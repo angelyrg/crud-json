@@ -1,0 +1,17 @@
+[
+    {
+        "id": "1",
+        "text": "Core Telecom"
+    },
+    {
+        "id": 3,
+        "text": "Recrutiment",
+        "clickeable": false,
+        "bizagi_folder": "bizagi_folder_name",
+        "items": []
+    },
+    {
+        "id": "4",
+        "text": "level_0_3"
+    }
+]
