@@ -1,17 +1,24 @@
 [
     {
-        "id": "1",
-        "text": "Core Telecom"
+        "id": 1,
+        "text": "test level",
+        "bizagi_folder": "bizagi_folder_name",
+        "clickeable": false,
+        "items": []
     },
     {
         "id": 3,
-        "text": "Recrutiment",
-        "clickeable": false,
+        "text": "It works",
         "bizagi_folder": "bizagi_folder_name",
+        "clickeable": false,
         "items": []
     },
     {
         "id": "4",
-        "text": "level_0_3"
+        "text": "Keep it easy"
+    },
+    {
+        "id": "5",
+        "text": "It works veru well"
     }
 ]

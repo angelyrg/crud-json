@@ -1,10 +1,12 @@
 <?php
 session_start();
-require_once('master.php');
-$master = new Master();
-$json_data = $master->get_all_data();
+//Get all data
+require("process.index.php");
+
+//Include modals
 include("includes/modal_new_level.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,18 +14,16 @@ include("includes/modal_new_level.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON</title>
-
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/4236/4236512.png" type="image/vnd.microsoft.icon">
+    <title>Process template</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/bootstrap.min.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-success bg-gradient">
         <div class="container">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Processes sample</a>
         </div>
     </nav>
     <div class="container px-5 my-3">
@@ -44,12 +44,17 @@ include("includes/modal_new_level.php");
                         <li class="list-group-item">
                             <div class="d-flex justify-content-between align-items-center">
                                 <?= $data->text; ?>
-                                <span class="badge" data-bs-toggle="tooltip" data-bs-placement="right" title="Add new level">
-                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $data->id; ?>" >
+                                <span class="badge">
+                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $data->id; ?>" title="Add new level">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
+                                    <a href="process.destroy.php?id=<?= $data->id ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
                                 </span>
-                                <?php include("includes/modal_edit_level.php"); ?>
+                                <?php 
+                                    include("includes/modal_edit_level.php");
+                                ?>
                             </div>
                             <?php
                             if (isset($data->items)) { ?>
@@ -58,7 +63,7 @@ include("includes/modal_new_level.php");
 
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <?= $item->text; ?>
-                                            <span class="badge bg-primary rounded-pill">14</span>
+                                            <span class="badge bg-primary rounded-pill">+</span>
                                         </li>
 
                                     <?php } ?>
@@ -106,9 +111,7 @@ include("includes/modal_new_level.php");
                         <div class="card-header">
                             <div class="d-flex justify-content-between">
                                 <div class="card-title col-auto flex-shrink-1 flex-grow-1">Process List</div>
-                                <div class="col-atuo">
-                                    <a class="btn btn-danger btn-flat" href="member_form.php"><i class="fa fa-plus-square"></i> Create new level</a>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="card-body">
@@ -138,12 +141,6 @@ include("includes/modal_new_level.php");
                                                 <td><?= isset($data->bizagi_folder) ? $data->bizagi_folder : "No folder" ?></td>
                                                 <td><?= isset($data->items) ? count($data->items) : "No items" ?></td>
                                                 <td class="text-center">
-                                                    <a href="member_form.php?id=<?= $data->id ?>" class="btn btn-sm btn-outline-info rounded-0">
-                                                        <i class="fa-solid fa-edit"></i>
-                                                    </a>
-                                                    <a href="delete_data.php?id=<?= $data->id ?>" class="btn btn-sm btn-outline-danger rounded-0" onclick="if(confirm(`¿Deseas eliminar del registro a <?= $data->name ?>?`) === false) event.preventDefault();">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -158,7 +155,9 @@ include("includes/modal_new_level.php");
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="assets/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
     <script>
         //Enable tooltips
         // var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))

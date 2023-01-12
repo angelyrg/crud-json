@@ -6,7 +6,7 @@
         <h5 class="modal-title" id="exampleModalLabel">Edit level</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form id="member-form" action="edit_level.php" method="POST">
+      <form id="member-form" action="process.update.php" method="POST">
         <div class="modal-body">
           <input type="hidden" name="id" value="<?= isset($data->id) ? $data->id : '' ?>">
           <div class="mb-3">

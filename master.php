@@ -41,8 +41,8 @@ class Master
         $data[$id] = (object) [
             "id" => $id,
             "text" => $title,
-            "clickeable" => $clickeable,
             "bizagi_folder" => $bizagi_folder,
+            "clickeable" => $clickeable,
             "items" => []
         ];
         $json = json_encode(array_values($data), JSON_PRETTY_PRINT);
@@ -57,19 +57,12 @@ class Master
     /**
      * Actualizar datos del archivo JSON
      */
-    function update_json_data()
+    function update_json_data($id, $title)
     {
-        $id = $_POST['id'];
-        $name = addslashes($_POST['name']);
-        $contact = addslashes($_POST['contact']);
-        $address = addslashes($_POST['address']);
-
         $data = $this->get_all_data();
         $data[$id] = (object) [
             "id" => $id,
-            "name" => $name,
-            "contact" => $contact,
-            "address" => $address
+            "text" => $title
         ];
         $json = json_encode(array_values($data), JSON_PRETTY_PRINT);
         $update = file_put_contents($this->data_file, $json);
@@ -89,7 +82,7 @@ class Master
     {
         if (empty($id)) {
             $resp['status'] = 'failed';
-            $resp['error'] = 'El ID de miembro dado está vacío.';
+            $resp['error'] = 'El ID dado está vacío.';
         } else {
             $data = $this->get_all_data();
             if (isset($data[$id])) {
@@ -103,7 +96,7 @@ class Master
                 }
             } else {
                 $resp['status'] = 'failed';
-                $resp['error'] = 'El ID de miembro dado no existe en el archivo JSON.';
+                $resp['error'] = 'El ID dado no existe.';
             }
         }
         return $resp;
