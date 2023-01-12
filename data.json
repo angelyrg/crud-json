@@ -1,24 +1,23 @@
 [
     {
         "id": 1,
-        "text": "test level",
+        "text": "Test level",
         "bizagi_folder": "bizagi_folder_name",
         "clickeable": false,
         "items": []
     },
     {
         "id": 3,
-        "text": "It works",
+        "text": "It works again",
         "bizagi_folder": "bizagi_folder_name",
         "clickeable": false,
         "items": []
     },
     {
-        "id": "4",
-        "text": "Keep it easy"
-    },
-    {
-        "id": "5",
-        "text": "It works veru well"
+        "id": 4,
+        "text": "Keep it easy!!!",
+        "bizagi_folder": "bizagi_folder_name",
+        "clickeable": false,
+        "items": []
     }
 ]

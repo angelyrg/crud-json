@@ -5,7 +5,7 @@ class Master
     public $data_file = "data.json";
 
     /**
-     * Obtener todos los datos JSON
+     * Get all data from JSON
      */
     function get_all_data()
     {
@@ -18,7 +18,7 @@ class Master
     }
 
     /**
-     * Obtener datos JSON únicos
+     * Get specific data from JSON
      */
     function get_data($id = '')
     {
@@ -32,7 +32,7 @@ class Master
     }
 
     /**
-     * Insertar datos en un archivo JSON
+     * Insert data in the JSON
      */
     function insert_to_json($title, $bizagi_folder, $clickeable = false )
     {
@@ -54,30 +54,27 @@ class Master
         }
         return $resp;
     }
+
     /**
-     * Actualizar datos del archivo JSON
+     * Update JSON record
      */
     function update_json_data($id, $title)
     {
-        $data = $this->get_all_data();
-        $data[$id] = (object) [
-            "id" => $id,
-            "text" => $title
-        ];
-        $json = json_encode(array_values($data), JSON_PRETTY_PRINT);
-        $update = file_put_contents($this->data_file, $json);
-        if ($update) {
-            $resp['status'] = 'success';
-        } else {
-            $resp['failed'] = 'failed';
+        $data = file_get_contents($this->data_file);
+        $json_arr = json_decode($data, true);
+
+        foreach ($json_arr as $key => $value) {
+            if ($value['id'] == $id) {
+                $json_arr[$key]['text'] = $title;
+            }
         }
-        return $resp;
+
+        file_put_contents($this->data_file, json_encode($json_arr, JSON_PRETTY_PRINT));
     }
 
     /**
-     * Eliminar datos del archivo JSON
+     * Destroy record from JSON
      */
-
     function delete_data($id = '')
     {
         if (empty($id)) {
