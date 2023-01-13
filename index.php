@@ -45,7 +45,10 @@ include("includes/modal_new_level.php");
                             <div class="d-flex justify-content-between align-items-center">
                                 <?= $data->text; ?>
                                 <span class="badge">
-                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $data->id; ?>" title="Add new level">
+                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_insert_level_<?= $data->id; ?>" title="Add new level into level">
+                                        <i class="fa-solid fa-folder-plus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $data->id; ?>" title="Edit level">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
                                     <a href="process.destroy.php?id=<?= $data->id ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
@@ -54,6 +57,7 @@ include("includes/modal_new_level.php");
                                 </span>
                                 <?php 
                                     include("includes/modal_edit_level.php");
+                                    include("includes/modal_insert_level.php");
                                 ?>
                             </div>
                             <?php
@@ -77,41 +81,11 @@ include("includes/modal_new_level.php");
             <!-- Table -->
             <div class="col-md-8 mx-auto">
                 <div class="container-fluid">
-                    <!-- Handling Messages Form Session -->
-                    <?php if (isset($_SESSION['msg_success']) || isset($_SESSION['msg_error'])) : ?>
-                        <?php if (isset($_SESSION['msg_success'])) : ?>
-                            <div class="alert alert-success rounded-0">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="col-auto flex-shrink-1 flex-grow-1"><?= $_SESSION['msg_success'] ?></div>
-                                    <div class="col-auto">
-                                        <a href="#" onclick="$(this).closest('.alert').remove()" class="text-decoration-none text-reset fw-bolder mx-3">
-                                            <i class="fa-solid fa-times"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php unset($_SESSION['msg_success']); ?>
-                        <?php endif; ?>
-                        <?php if (isset($_SESSION['msg_error'])) : ?>
-                            <div class="alert alert-danger rounded-0">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="col-auto flex-shrink-1 flex-grow-1"><?= $_SESSION['msg_error'] ?></div>
-                                    <div class="col-auto">
-                                        <a href="#" onclick="$(this).closest('.alert').remove()" class="text-decoration-none text-reset fw-bolder mx-3">
-                                            <i class="fa-solid fa-times"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php unset($_SESSION['msg_error']); ?>
-                        <?php endif; ?>
-                    <?php endif; ?>
-                    <!--END of Handling Messages Form Session -->
                     <div class="card rounded-0 shadow">
                         <div class="card-header">
                             <div class="d-flex justify-content-between">
-                                <div class="card-title col-auto flex-shrink-1 flex-grow-1">Process List</div>
-                                
+                                <div class="card-title col-auto flex-shrink-1 flex-grow-1">Processes List</div>
+
                             </div>
                         </div>
                         <div class="card-body">
@@ -158,13 +132,6 @@ include("includes/modal_new_level.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-    <script>
-        //Enable tooltips
-        // var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        // var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-        //     return new bootstrap.Tooltip(tooltipTriggerEl)
-        // })
-    </script>
 </body>
 
 </html>

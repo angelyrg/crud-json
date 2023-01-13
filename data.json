@@ -1,10 +1,18 @@
 [
     {
         "id": 1,
-        "text": "Test level",
+        "text": "dd",
         "bizagi_folder": "bizagi_folder_name",
         "clickeable": false,
-        "items": []
+        "items": [
+            {
+                "id": "1",
+                "text": "aa",
+                "bizagi_folder": "bizagiFolder",
+                "clickeable": false,
+                "items": []
+            }
+        ]
     },
     {
         "id": 3,
@@ -16,6 +24,28 @@
     {
         "id": 4,
         "text": "Keep it easy!!!",
+        "bizagi_folder": "bizagi_folder_name",
+        "clickeable": false,
+        "items": []
+    },
+    {
+        "id": 5,
+        "text": "123",
+        "bizagi_folder": "bizagi_folder_name",
+        "clickeable": false,
+        "items": [
+            {
+                "id": "5",
+                "text": "adsf",
+                "bizagi_folder": "bizagiFolder",
+                "clickeable": false,
+                "items": []
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "text": "abc",
         "bizagi_folder": "bizagi_folder_name",
         "clickeable": false,
         "items": []

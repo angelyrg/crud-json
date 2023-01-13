@@ -56,6 +56,34 @@ class Master
     }
 
     /**
+     * Insert level into another level the JSON
+     */
+    function insert_child_data($id, $title, $bizagi_folder, $clickeable = false )
+    {
+
+        $data = file_get_contents($this->data_file);
+        $json_arr = json_decode($data, true);
+
+        $new_data[] =  [
+            "id" => $id,
+            "text" => $title,
+            "bizagi_folder" => $bizagi_folder,
+            "clickeable" => $clickeable,
+            "items" => []
+        ];
+        
+
+        foreach ($json_arr as $key => $value) {
+            if ($value['id'] == $id) {
+                $json_arr[$key]['items'] = array_values($new_data) ;
+                //break;
+            }
+        }
+
+        file_put_contents($this->data_file, json_encode($json_arr, JSON_PRETTY_PRINT));
+    }
+
+    /**
      * Update JSON record
      */
     function update_json_data($id, $title)
