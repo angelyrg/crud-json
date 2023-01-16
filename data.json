@@ -6,20 +6,20 @@
         "clickeable": false,
         "items": [
             {
-                "id": "1",
-                "text": "aa",
+                "id": "1_1",
+                "text": "ff",
+                "bizagi_folder": "bizagiFolder",
+                "clickeable": false,
+                "items": []
+            },
+            {
+                "id": "1_2",
+                "text": "al iuysdfhaosdiuyf adsufdsfg ",
                 "bizagi_folder": "bizagiFolder",
                 "clickeable": false,
                 "items": []
             }
         ]
-    },
-    {
-        "id": 3,
-        "text": "It works again",
-        "bizagi_folder": "bizagi_folder_name",
-        "clickeable": false,
-        "items": []
     },
     {
         "id": 4,
@@ -35,11 +35,19 @@
         "clickeable": false,
         "items": [
             {
-                "id": "5",
-                "text": "adsf",
+                "id": "5_2",
+                "text": "asdf",
                 "bizagi_folder": "bizagiFolder",
                 "clickeable": false,
-                "items": []
+                "items": [
+                    {
+                        "id": "5_2_1",
+                        "text": "third level",
+                        "bizagi_folder": "bizagiFolder",
+                        "clickeable": false,
+                        "items": []
+                    }
+                ]
             }
         ]
     },
@@ -48,6 +56,14 @@
         "text": "abc",
         "bizagi_folder": "bizagi_folder_name",
         "clickeable": false,
-        "items": []
+        "items": {
+            "1": {
+                "id": "6_2",
+                "text": "asdfdf",
+                "bizagi_folder": "bizagiFolder",
+                "clickeable": false,
+                "items": []
+            }
+        }
     }
 ]

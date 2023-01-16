@@ -55,34 +55,7 @@ class Master
         return $resp;
     }
 
-    /**
-     * Insert level into another level the JSON
-     */
-    function insert_child_data($id, $title, $bizagi_folder, $clickeable = false )
-    {
-
-        $data = file_get_contents($this->data_file);
-        $json_arr = json_decode($data, true);
-
-        $new_data[] =  [
-            "id" => $id,
-            "text" => $title,
-            "bizagi_folder" => $bizagi_folder,
-            "clickeable" => $clickeable,
-            "items" => []
-        ];
-        
-
-        foreach ($json_arr as $key => $value) {
-            if ($value['id'] == $id) {
-                $json_arr[$key]['items'] = array_values($new_data) ;
-                //break;
-            }
-        }
-
-        file_put_contents($this->data_file, json_encode($json_arr, JSON_PRETTY_PRINT));
-    }
-
+    
     /**
      * Update JSON record
      */
@@ -105,25 +78,61 @@ class Master
      */
     function delete_data($id = '')
     {
-        if (empty($id)) {
-            $resp['status'] = 'failed';
-            $resp['error'] = 'El ID dado está vacío.';
-        } else {
-            $data = $this->get_all_data();
-            if (isset($data[$id])) {
-                unset($data[$id]);
-                $json = json_encode(array_values($data), JSON_PRETTY_PRINT);
-                $update = file_put_contents($this->data_file, $json);
-                if ($update) {
-                    $resp['status'] = 'success';
-                } else {
-                    $resp['failed'] = 'failed';
+        $data = file_get_contents($this->data_file);
+        $json_arr = json_decode($data, true);
+        $ids = explode("_", $id);
+
+        switch (count($ids)){
+            case 1:
+                foreach($json_arr as $key => $value){
+                    if( $value['id'] == $id ){
+                        unset($json_arr[$key]);
+                        $json = json_encode(array_values($json_arr), JSON_PRETTY_PRINT);
+                        file_put_contents($this->data_file, $json);
+                    }
                 }
-            } else {
-                $resp['status'] = 'failed';
-                $resp['error'] = 'El ID dado no existe.';
+            break;
+            case 2:
+                foreach($json_arr as $key => $value){
+                    if( $value['id'] == $ids[0] ){
+                        foreach($value['items'] as $k => $items){
+                            if ($items['id'] == $id){
+                                unset( $json_arr[$key]['items'][$k] );
+                                $json = json_encode(array_values($json_arr), JSON_PRETTY_PRINT);
+                                file_put_contents($this->data_file, $json);
+                        }
+                    }
+                }
+            }
+            break;
+        }
+
+    }
+
+    /**
+     * Insert level into another level the JSON
+     */
+    function insert_child_data($id, $title, $bizagi_folder, $clickeable = false )
+    {
+        $data = file_get_contents($this->data_file);
+        $json_arr = json_decode($data, true);
+
+        foreach ($json_arr as $key => $value) {
+            if ($value['id'] == $id) {
+                $id_child = count($value['items']) + 1;
+                $new_data =  [
+                    "id" => $value['id']."_".$id_child,
+                    "text" => $title,
+                    "bizagi_folder" => $bizagi_folder,
+                    "clickeable" => $clickeable,
+                    "items" => []
+                ];
+                array_push($value['items'], $new_data);
+                $json_arr[$key]['items'] = $value['items'];
             }
         }
-        return $resp;
+        file_put_contents($this->data_file, json_encode($json_arr, JSON_PRETTY_PRINT));
     }
+
+
 }
