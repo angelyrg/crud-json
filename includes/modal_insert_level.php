@@ -1,5 +1,5 @@
-<!-- Modal New level-->
-<div class="modal fade" id="modal_insert_level_<?=$data->id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal New level 2-->
+<div class="modal fade" id="modal_insert_level_<?=$id_item; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -8,7 +8,7 @@
       </div>
       <form id="member-form" action="process.insert.php" method="POST">
         <div class="modal-body">
-          <input type="hidden" name="parent_level_id" value="<?= isset($data->id) ? $data->id : '' ?>">
+          <input type="hidden" name="parent_level_id" value="<?= ($id_item != 0) ? $id_item : '' ?>">
           <div class="mb-3">
             <label for="new_level_name" class="form-label">New level name</label>
             <input type="text" class="form-control rounded" value="" id="new_level_name" name="new_level_name" required autocomplete="off">
