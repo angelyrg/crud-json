@@ -105,6 +105,23 @@ class Master
                 }
             }
             break;
+            case 3:
+                foreach($json_arr as $key => $value){
+                    if( $value['id'] == $ids[0] ){
+                        foreach($value['items'] as $k => $items){
+                            if ($items['id'] == $ids[0]."_".$ids[1]){
+                                foreach($items['items'] as $k3 => $item3){
+                                    if ($item3['id'] == $id){
+                                        unset( $json_arr[$key]['items'][$k]['items'][$k3] );
+                                        $json = json_encode(array_values($json_arr), JSON_PRETTY_PRINT);
+                                        file_put_contents($this->data_file, $json);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            break;
         }
 
     }

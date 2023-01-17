@@ -43,7 +43,7 @@ include("includes/modal_new_level.php");
                     <?php foreach ($json_data as $data) { ?>
                         <li class="list-group-item">
                             <div class="d-flex justify-content-between align-items-center">
-                                <?= $data->id." ".$data->text; ?>
+                                <?= $data->id . ". " . $data->text; ?>
                                 <span class="badge">
                                     <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_insert_level_<?= $data->id; ?>" title="Add new level into level">
                                         <i class="fa-solid fa-folder-plus"></i>
@@ -55,9 +55,9 @@ include("includes/modal_new_level.php");
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </span>
-                                <?php 
-                                    include("includes/modal_edit_level.php");
-                                    include("includes/modal_insert_level.php");
+                                <?php
+                                include("includes/modal_edit_level.php");
+                                include("includes/modal_insert_level.php");
                                 ?>
                             </div>
                             <?php
@@ -65,14 +65,38 @@ include("includes/modal_new_level.php");
                                 <ul class="list-group">
                                     <?php foreach ($data->items as $item) { ?>
 
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <?= $item->id." ".$item->text; ?>
-                                        
-                                            <span class="badge rounded-pill">
-                                                <a href="process.destroy.php?id=<?= $item->id ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </a>
-                                            </span>
+                                        <li class="list-group-item">
+                                            <div class=" d-flex justify-content-between align-items-center">
+                                                <?= $item->id . ". " . $item->text; ?>
+    
+                                                <span class="badge rounded-pill">
+                                                    <a href="process.destroy.php?id=<?= $item->id ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
+                                                        <i class="fa-solid fa-xmark"></i>
+                                                    </a>
+                                                </span>
+                                                
+                                            </div>
+
+                                            <?php
+    
+                                                if (isset($item->items)) { ?>
+                                                    <ul class="list-group">
+                                                        <?php foreach ($item->items as $folder) { ?>
+    
+                                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                <?= $folder->id . ". " . $folder->text; ?>
+    
+                                                                <span class="badge rounded-pill">
+                                                                    <a href="process.destroy.php?id=<?= $folder->id ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
+                                                                        <i class="fa-solid fa-xmark"></i>
+                                                                    </a>
+                                                                </span>
+                                                            </li>
+    
+                                                        <?php } ?>
+                                                    </ul>
+                                                <?php } ?>
+
                                         </li>
 
                                     <?php } ?>

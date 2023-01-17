@@ -11,22 +11,8 @@
                 "bizagi_folder": "bizagiFolder",
                 "clickeable": false,
                 "items": []
-            },
-            {
-                "id": "1_2",
-                "text": "al iuysdfhaosdiuyf adsufdsfg ",
-                "bizagi_folder": "bizagiFolder",
-                "clickeable": false,
-                "items": []
             }
         ]
-    },
-    {
-        "id": 4,
-        "text": "Keep it easy!!!",
-        "bizagi_folder": "bizagi_folder_name",
-        "clickeable": false,
-        "items": []
     },
     {
         "id": 5,
@@ -39,31 +25,22 @@
                 "text": "asdf",
                 "bizagi_folder": "bizagiFolder",
                 "clickeable": false,
-                "items": [
-                    {
-                        "id": "5_2_1",
-                        "text": "third level",
-                        "bizagi_folder": "bizagiFolder",
-                        "clickeable": false,
-                        "items": []
-                    }
-                ]
+                "items": []
+            },
+            {
+                "id": "5_2",
+                "text": "second level",
+                "bizagi_folder": "bizagiFolder",
+                "clickeable": false,
+                "items": []
             }
         ]
     },
     {
         "id": 6,
-        "text": "abc",
+        "text": "level one",
         "bizagi_folder": "bizagi_folder_name",
         "clickeable": false,
-        "items": {
-            "1": {
-                "id": "6_2",
-                "text": "asdfdf",
-                "bizagi_folder": "bizagiFolder",
-                "clickeable": false,
-                "items": []
-            }
-        }
+        "items": []
     }
 ]
