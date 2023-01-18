@@ -42,13 +42,13 @@ include("includes/modal_new_level.php");
                 <ul class="list-group">
                     <?php
                     foreach ($json_data as $data) {
-                        $id_item = 0;
                         $id_item = $data->id;
+                        $title = $data->text;
                     ?>
                         <li class="list-group-item">
                             <div class="d-flex justify-content-between align-items-center">
                                 <!-- Level 1 -->
-                                <?= $data->id . ". " . $data->text; ?>
+                                <?= $data->id . ". " . $title; ?>
                                 <span class="badge">
                                     <button type="button" class="btn btn-sm btn-outline-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_insert_level_<?= $data->id; ?>" title="Add new level into level">
                                         <i class="fa-solid fa-folder-plus"></i>
@@ -70,28 +70,28 @@ include("includes/modal_new_level.php");
                                 <ul class="list-group">
                                     <?php
                                     foreach ($data->items as $item) {
-                                        //$id_item = 0;
                                         $id_item = $item->id;
+                                        $title = $item->text;
                                     ?>
                                         <!-- Level 2 -->
                                         <li class="list-group-item">
                                             <div class=" d-flex justify-content-between align-items-center">
-                                                <?= $item->id . ". " . $item->text; ?>
+                                                <?= $id_item . ". " . $item->text; ?>
 
                                                 <span class="badge rounded-pill">
                                                     <!-- Working on it -->
                                                     <button type="button" class="btn btn-sm btn-outline-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_insert_level_<?= $id_item; ?>" title="Add new level into level">
                                                         <i class="fa-solid fa-folder-plus"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
+                                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
                                                         <i class="fa-regular fa-pen-to-square"></i>
                                                     </button>
-                                                    <a href="process.destroy.php?id=<?= $item->id ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
+                                                    <a href="process.destroy.php?id=<?= $id_item ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </span>
                                                 <?php
-                                                //include("includes/modal_edit_level.php");
+                                                include("includes/modal_edit_level.php");
                                                 include("includes/modal_insert_level.php");
                                                 ?>
 
@@ -103,21 +103,26 @@ include("includes/modal_new_level.php");
                                                 <ul class="list-group">
                                                     <?php
                                                     foreach ($item->items as $item3) {
-                                                    ?>
+                                                        $id_item = $item3->id;
+                                                        $title = $item3->text;
+                                                        ?>
                                                         <!-- Level 3 -->
                                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                            <?= $item3->id . ". " . $item3->text; ?>
+
+                                                            <a href="#" style="text-decoration: none">
+                                                                <?= $id_item . ". " . $title; ?>
+                                                            </a>
 
                                                             <span class="badge rounded-pill">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
+                                                                <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
                                                                     <i class="fa-regular fa-pen-to-square"></i>
                                                                 </button>
-                                                                <a href="process.destroy.php?id=<?= $item3->id ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
+                                                                <a href="process.destroy.php?id=<?= $id_item ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
                                                                     <i class="fa-solid fa-trash"></i>
                                                                 </a>
                                                             </span>
                                                             <?php
-                                                            //include("includes/modal_edit_level.php");
+                                                            include("includes/modal_edit_level.php");
                                                             ?>
                                                         </li>
 
@@ -148,13 +153,6 @@ include("includes/modal_new_level.php");
                         <div class="card-body">
                             <div class="container-fluid table-responsive">
                                 <table class="table table-stripped table-bordered">
-                                    <colgroup>
-                                        <col width="5%">
-                                        <col width="20%">
-                                        <col width="20%">
-                                        <col width="35%">
-                                        <col width="20%">
-                                    </colgroup>
                                     <thead>
                                         <tr>
                                             <th class="text-center">ID</th>

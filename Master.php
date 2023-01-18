@@ -63,14 +63,54 @@ class Master
     {
         $data = file_get_contents($this->data_file);
         $json_arr = json_decode($data, true);
+        $ids = explode("_", $id);
 
-        foreach ($json_arr as $key => $value) {
-            if ($value['id'] == $id) {
-                $json_arr[$key]['text'] = $title;
-            }
+        switch (count($ids)){
+            case 1:
+                foreach($json_arr as $key => $value){
+                    if( $value['id'] == $id ){
+                        $json_arr[$key]['text'] = $title;
+
+                        $json = json_encode($json_arr, JSON_PRETTY_PRINT);
+                        file_put_contents($this->data_file, $json);
+                    }
+                }
+                break;
+
+            case 2:
+                foreach($json_arr as $key => $value){
+                    if( $value['id'] == $ids[0] ){
+                        foreach($value['items'] as $k => $items){
+                            if ($items['id'] == $id){
+                                $json_arr[$key]['items'][$k]['text'] = $title;
+
+                                $json = json_encode($json_arr, JSON_PRETTY_PRINT);
+                                file_put_contents($this->data_file, $json);
+                            }
+                        }
+                    }
+                }
+                break;
+
+            case 3:
+                foreach($json_arr as $key => $value){
+                    if( $value['id'] == $ids[0] ){
+                        foreach($value['items'] as $k => $items){
+                            if ($items['id'] == $ids[0]."_".$ids[1]){
+                                foreach($items['items'] as $k3 => $item3){
+                                    if ($item3['id'] == $id){
+                                        $json_arr[$key]['items'][$k]['items'][$k3]['text'] = $title;
+
+                                        $json = json_encode(array_values($json_arr), JSON_PRETTY_PRINT);
+                                        file_put_contents($this->data_file, $json);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                break;
         }
-
-        file_put_contents($this->data_file, json_encode($json_arr, JSON_PRETTY_PRINT));
     }
 
     /**
@@ -91,7 +131,7 @@ class Master
                         file_put_contents($this->data_file, $json);
                     }
                 }
-            break;
+                break;
             case 2:
                 foreach($json_arr as $key => $value){
                     if( $value['id'] == $ids[0] ){
@@ -100,11 +140,11 @@ class Master
                                 unset( $json_arr[$key]['items'][$k] );
                                 $json = json_encode(array_values($json_arr), JSON_PRETTY_PRINT);
                                 file_put_contents($this->data_file, $json);
+                            }
                         }
                     }
                 }
-            }
-            break;
+                break;
             case 3:
                 foreach($json_arr as $key => $value){
                     if( $value['id'] == $ids[0] ){
@@ -121,7 +161,7 @@ class Master
                         }
                     }
                 }
-            break;
+                break;
         }
 
     }
