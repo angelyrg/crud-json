@@ -1,13 +1,13 @@
 [
     {
-        "id": 1,
-        "text": "dd",
+        "id": 5,
+        "text": "Software managemnet process",
         "bizagi_folder": "bizagi_folder_name",
         "clickeable": false,
         "items": [
             {
-                "id": "1_1",
-                "text": "ff",
+                "id": "5_1",
+                "text": "afds",
                 "bizagi_folder": "bizagiFolder",
                 "clickeable": false,
                 "items": []
@@ -15,24 +15,113 @@
         ]
     },
     {
-        "id": 5,
-        "text": "123",
+        "id": 6,
+        "text": "Level ONE",
         "bizagi_folder": "bizagi_folder_name",
         "clickeable": false,
         "items": [
             {
-                "id": "5_2",
-                "text": "asdf",
+                "id": "6_1",
+                "text": "another",
                 "bizagi_folder": "bizagiFolder",
                 "clickeable": false,
-                "items": []
+                "items": [
+                    {
+                        "id": "6_1_1",
+                        "text": "dx",
+                        "bizagi_folder": "bizagiFolder",
+                        "clickeable": false,
+                        "items": []
+                    }
+                ]
             },
             {
-                "id": "5_2",
-                "text": "second level",
+                "id": "6_2",
+                "text": "another level",
                 "bizagi_folder": "bizagiFolder",
                 "clickeable": false,
-                "items": []
+                "items": {
+                    "1": {
+                        "id": "6_2_2",
+                        "text": "xdxd",
+                        "bizagi_folder": "bizagiFolder",
+                        "clickeable": false,
+                        "items": []
+                    },
+                    "2": {
+                        "id": "6_2_3",
+                        "text": "dxdxd",
+                        "bizagi_folder": "bizagiFolder",
+                        "clickeable": false,
+                        "items": []
+                    }
+                }
+            },
+            {
+                "id": "6_3",
+                "text": "it not another level in here",
+                "bizagi_folder": "bizagiFolder",
+                "clickeable": false,
+                "items": {
+                    "0": {
+                        "id": "6_3_1",
+                        "text": "as8diyf",
+                        "bizagi_folder": "bizagiFolder",
+                        "clickeable": false,
+                        "items": []
+                    },
+                    "3": {
+                        "id": "6_3_4",
+                        "text": "asdfadsf",
+                        "bizagi_folder": "bizagiFolder",
+                        "clickeable": false,
+                        "items": []
+                    },
+                    "4": {
+                        "id": "6_3_5",
+                        "text": "asdf",
+                        "bizagi_folder": "bizagiFolder",
+                        "clickeable": false,
+                        "items": []
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "text": "nine",
+        "bizagi_folder": "bizagi_folder_name",
+        "clickeable": false,
+        "items": []
+    },
+    {
+        "id": 10,
+        "text": "level 1 but ten",
+        "bizagi_folder": "bizagi_folder_name",
+        "clickeable": false,
+        "items": [
+            {
+                "id": "10_1",
+                "text": "into ten level",
+                "bizagi_folder": "bizagiFolder",
+                "clickeable": false,
+                "items": [
+                    {
+                        "id": "10_1_1",
+                        "text": "into level 10 and one",
+                        "bizagi_folder": "bizagiFolder",
+                        "clickeable": false,
+                        "items": []
+                    },
+                    {
+                        "id": "10_1_2",
+                        "text": "another leven into ten",
+                        "bizagi_folder": "bizagiFolder",
+                        "clickeable": false,
+                        "items": []
+                    }
+                ]
             }
         ]
     }

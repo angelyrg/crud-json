@@ -27,10 +27,10 @@ include("includes/modal_new_level.php");
         </div>
     </nav>
     <div class="container px-5 my-3">
-        <h2 class="text-center my-4">All process</h2>
+        <h2 class="text-center my-4">Admin sample</h2>
         <div class="row">
             <!-- Page Content Container -->
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="row text-end">
                     <spam>
                         <button type="button" class="btn btn-sm btn-outline-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_new_level">
@@ -40,12 +40,17 @@ include("includes/modal_new_level.php");
                 </div>
 
                 <ul class="list-group">
-                    <?php foreach ($json_data as $data) { ?>
+                    <?php
+                    foreach ($json_data as $data) {
+                        $id_item = 0;
+                        $id_item = $data->id;
+                    ?>
                         <li class="list-group-item">
                             <div class="d-flex justify-content-between align-items-center">
+                                <!-- Level 1 -->
                                 <?= $data->id . ". " . $data->text; ?>
                                 <span class="badge">
-                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_insert_level_<?= $data->id; ?>" title="Add new level into level">
+                                    <button type="button" class="btn btn-sm btn-outline-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_insert_level_<?= $data->id; ?>" title="Add new level into level">
                                         <i class="fa-solid fa-folder-plus"></i>
                                     </button>
                                     <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $data->id; ?>" title="Edit level">
@@ -63,39 +68,62 @@ include("includes/modal_new_level.php");
                             <?php
                             if (isset($data->items)) { ?>
                                 <ul class="list-group">
-                                    <?php foreach ($data->items as $item) { ?>
-
+                                    <?php
+                                    foreach ($data->items as $item) {
+                                        //$id_item = 0;
+                                        $id_item = $item->id;
+                                    ?>
+                                        <!-- Level 2 -->
                                         <li class="list-group-item">
                                             <div class=" d-flex justify-content-between align-items-center">
                                                 <?= $item->id . ". " . $item->text; ?>
-    
+
                                                 <span class="badge rounded-pill">
+                                                    <!-- Working on it -->
+                                                    <button type="button" class="btn btn-sm btn-outline-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_insert_level_<?= $id_item; ?>" title="Add new level into level">
+                                                        <i class="fa-solid fa-folder-plus"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
+                                                        <i class="fa-regular fa-pen-to-square"></i>
+                                                    </button>
                                                     <a href="process.destroy.php?id=<?= $item->id ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
-                                                        <i class="fa-solid fa-xmark"></i>
+                                                        <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </span>
-                                                
+                                                <?php
+                                                //include("includes/modal_edit_level.php");
+                                                include("includes/modal_insert_level.php");
+                                                ?>
+
                                             </div>
 
                                             <?php
-    
-                                                if (isset($item->items)) { ?>
-                                                    <ul class="list-group">
-                                                        <?php foreach ($item->items as $folder) { ?>
-    
-                                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                                <?= $folder->id . ". " . $folder->text; ?>
-    
-                                                                <span class="badge rounded-pill">
-                                                                    <a href="process.destroy.php?id=<?= $folder->id ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
-                                                                        <i class="fa-solid fa-xmark"></i>
-                                                                    </a>
-                                                                </span>
-                                                            </li>
-    
-                                                        <?php } ?>
-                                                    </ul>
-                                                <?php } ?>
+
+                                            if (isset($item->items)) { ?>
+                                                <ul class="list-group">
+                                                    <?php
+                                                    foreach ($item->items as $item3) {
+                                                    ?>
+                                                        <!-- Level 3 -->
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <?= $item3->id . ". " . $item3->text; ?>
+
+                                                            <span class="badge rounded-pill">
+                                                                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
+                                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                                </button>
+                                                                <a href="process.destroy.php?id=<?= $item3->id ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
+                                                                    <i class="fa-solid fa-trash"></i>
+                                                                </a>
+                                                            </span>
+                                                            <?php
+                                                            //include("includes/modal_edit_level.php");
+                                                            ?>
+                                                        </li>
+
+                                                    <?php } ?>
+                                                </ul>
+                                            <?php } ?>
 
                                         </li>
 
@@ -108,12 +136,12 @@ include("includes/modal_new_level.php");
 
             </div>
             <!-- Table -->
-            <div class="col-md-8 mx-auto">
+            <div class="col-md-7 mx-auto">
                 <div class="container-fluid">
                     <div class="card rounded-0 shadow">
                         <div class="card-header">
                             <div class="d-flex justify-content-between">
-                                <div class="card-title col-auto flex-shrink-1 flex-grow-1">Processes List</div>
+                                <div class="card-title col-auto flex-shrink-1 flex-grow-1">More information about this process</div>
 
                             </div>
                         </div>
@@ -133,7 +161,6 @@ include("includes/modal_new_level.php");
                                             <th class="text-center">Title</th>
                                             <th class="text-center">Bizagi Folder</th>
                                             <th class="text-center">Items</th>
-                                            <th class="text-center">Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -143,8 +170,6 @@ include("includes/modal_new_level.php");
                                                 <td><?= $data->text ?></td>
                                                 <td><?= isset($data->bizagi_folder) ? $data->bizagi_folder : "No folder" ?></td>
                                                 <td><?= isset($data->items) ? count($data->items) : "No items" ?></td>
-                                                <td class="text-center">
-                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>

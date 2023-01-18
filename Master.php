@@ -32,7 +32,7 @@ class Master
     }
 
     /**
-     * Insert data in the JSON
+     * Insert data in the JSON (LEVEL 1)
      */
     function insert_to_json($title, $bizagi_folder, $clickeable = false )
     {
@@ -127,28 +127,71 @@ class Master
     }
 
     /**
-     * Insert level into another level the JSON
+     * Insert level into another level the JSON (LEVEL 2-3)
      */
-    function insert_child_data($id, $title, $bizagi_folder, $clickeable = false )
+    function insert_child($id, $title, $bizagi_folder, $clickeable = false )
     {
+
         $data = file_get_contents($this->data_file);
         $json_arr = json_decode($data, true);
+        $ids = explode("_", $id);
 
-        foreach ($json_arr as $key => $value) {
-            if ($value['id'] == $id) {
-                $id_child = count($value['items']) + 1;
-                $new_data =  [
-                    "id" => $value['id']."_".$id_child,
-                    "text" => $title,
-                    "bizagi_folder" => $bizagi_folder,
-                    "clickeable" => $clickeable,
-                    "items" => []
-                ];
-                array_push($value['items'], $new_data);
-                $json_arr[$key]['items'] = $value['items'];
+        switch (count($ids)){
+            
+            case 1:                
+                foreach($json_arr as $key => $value){
+                    if( $value['id'] == $ids[0] ){
+                        // Set new id
+                        if ( count($value['items']) > 0 ){
+                            $last_id = explode('_', end( $value['items'] )['id']);
+                            $child_id = $id."_".(end($last_id) + 1);
+                        }else{
+                            $child_id = $id."_1";
+                        }                               
+                        $new_data =  [
+                            "id" => $child_id,
+                            "text" => $title,
+                            "bizagi_folder" => $bizagi_folder,
+                            "clickeable" => $clickeable,
+                            "items" => []
+                        ];
+                        array_push($json_arr[$key]['items'], $new_data);                                                            
+                        $json = json_encode(array_values($json_arr), JSON_PRETTY_PRINT);
+                        file_put_contents($this->data_file, $json);                        
+                    }
+                }
+                break;
+            case 2:                
+                foreach($json_arr as $key => $value){
+                    if( $value['id'] == $ids[0] ){
+                        foreach($value['items'] as $k => $value2){
+                            if ($value2['id'] == $id){
+                                // Set new id
+                                if ( count($value2['items']) > 0 ){
+                                    $last_id = explode('_', end( $value2['items'] )['id']);
+                                    $child_id = $id."_".(end($last_id) + 1);
+                                }else{
+                                    $child_id = $id."_1";
+                                }                               
+                                $new_data =  [
+                                    "id" => $child_id,
+                                    "text" => $title,
+                                    "bizagi_folder" => $bizagi_folder,
+                                    "clickeable" => $clickeable,
+                                    "items" => []
+                                ];
+                                array_push($json_arr[$key]['items'][$k]['items'], $new_data);                                                            
+                                $json = json_encode(array_values($json_arr), JSON_PRETTY_PRINT);
+                                file_put_contents($this->data_file, $json);
+                        }
+                    }
+                }
             }
+            break;
+            
         }
-        file_put_contents($this->data_file, json_encode($json_arr, JSON_PRETTY_PRINT));
+
+
     }
 
 
