@@ -2,7 +2,7 @@
 
 class Master
 {
-    public $data_file = "data.json";
+    public $data_file = "dataFolder/data.json";
 
     /**
      * Get all data from JSON
@@ -126,7 +126,8 @@ class Master
             case 1:
                 foreach($json_arr as $key => $value){
                     if( $value['id'] == $id ){
-                        unset($json_arr[$key]);
+                        //unset($json_arr[$key]);
+                        array_splice($json_arr, $key, 1); 
                         $json = json_encode(array_values($json_arr), JSON_PRETTY_PRINT);
                         file_put_contents($this->data_file, $json);
                     }
@@ -137,7 +138,8 @@ class Master
                     if( $value['id'] == $ids[0] ){
                         foreach($value['items'] as $k => $items){
                             if ($items['id'] == $id){
-                                unset( $json_arr[$key]['items'][$k] );
+                                array_splice($json_arr[$key]['items'], $k, 1); 
+
                                 $json = json_encode(array_values($json_arr), JSON_PRETTY_PRINT);
                                 file_put_contents($this->data_file, $json);
                             }
@@ -152,8 +154,9 @@ class Master
                             if ($items['id'] == $ids[0]."_".$ids[1]){
                                 foreach($items['items'] as $k3 => $item3){
                                     if ($item3['id'] == $id){
-                                        unset( $json_arr[$key]['items'][$k]['items'][$k3] );
-                                        $json = json_encode(array_values($json_arr), JSON_PRETTY_PRINT);
+                                        array_splice($json_arr[$key]['items'][$k]['items'], $k3, 1); 
+
+                                        $json = json_encode(($json_arr), JSON_PRETTY_PRINT);
                                         file_put_contents($this->data_file, $json);
                                     }
                                 }
