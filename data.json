@@ -35,12 +35,5 @@
                 "items": []
             }
         ]
-    },
-    {
-        "id": 6,
-        "text": "level one",
-        "bizagi_folder": "bizagi_folder_name",
-        "clickeable": false,
-        "items": []
     }
 ]
