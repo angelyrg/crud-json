@@ -33,17 +33,10 @@ function searchItem(full_id, data){
                             $("#process_title").text( values3.text );
                         }                
                     });
-
                 }                
             });
-
         }
     });
-
-
-    //console.log(data);
-
-
 }
 
 
@@ -51,5 +44,6 @@ function searchItem(full_id, data){
 $(".item_clickeable").on("click", function () {
     let item_id = $(this).attr("id");
     searchItem(item_id, window.all_data);
+    console.log("Clicked");
 });
 

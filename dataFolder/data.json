@@ -26,7 +26,15 @@
         "text": "TECHNICAL DIVISION",
         "bizagi_folder": "bizagi_folder_name",
         "clickeable": false,
-        "items": []
+        "items": [
+            {
+                "id": "2_1",
+                "text": "lvel",
+                "bizagi_folder": "bizagiFolder",
+                "clickeable": false,
+                "items": []
+            }
+        ]
     },
     {
         "id": 3,
@@ -46,7 +54,15 @@
                 "text": "Strategy",
                 "bizagi_folder": "bizagiFolder",
                 "clickeable": false,
-                "items": []
+                "items": [
+                    {
+                        "id": "4_1_1",
+                        "text": "XD",
+                        "bizagi_folder": "bizagiFolder",
+                        "clickeable": false,
+                        "items": []
+                    }
+                ]
             },
             {
                 "id": "4_2",

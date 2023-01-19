@@ -18,10 +18,11 @@ include("includes/modal_new_level.php");
     <title>Process template</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success bg-gradient">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
             <a class="navbar-brand" href="#">Processes sample</a>
         </div>
@@ -31,6 +32,7 @@ include("includes/modal_new_level.php");
         <div class="row">
             <!-- Page Content Container -->
             <div class="col-md-5">
+
                 <div class="row text-end">
                     <spam>
                         <button type="button" class="btn btn-sm btn-outline-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_new_level">
@@ -39,154 +41,178 @@ include("includes/modal_new_level.php");
                     </spam>
                 </div>
 
-                <ul class="list-group">
+                <!-- Accordion -->
+                <div class="accordion" id="acco_sample">
                     <?php
                     foreach ($json_data as $data) {
                         $id_item = $data->id;
                         $title = $data->text;
                     ?>
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <!-- Level 1 -->
-                                <?= str_replace("_", ".", $id_item) . ". " . $title; ?>
-                                <span class="badge">
-                                    <button type="button" class="btn btn-sm btn-outline-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_insert_level_<?= $id_item; ?>" title="Add new level into level">
-                                        <i class="fa-solid fa-folder-plus" aria-hidden="true"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
-                                        <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
-                                    </button>
-                                    <a href="process.destroy.php?id=<?= $id_item ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
-                                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                                    </a>
-                                </span>
-                                <?php
-                                include("includes/modal_edit_level.php");
-                                include("includes/modal_insert_level.php");
-                                ?>
-                            </div>
-                            <?php
-                            if (isset($data->items)) { ?>
-                                <ul class="list-group">
-                                    <?php
-                                    foreach ($data->items as $item) {
-                                        $id_item = $item->id;
-                                        $title = $item->text;
-                                    ?>
-                                        <!-- Level 2 -->
-                                        <li class="list-group-item">
-                                            <div class=" d-flex justify-content-between align-items-center">
-                                                <?= str_replace("_", ".", $id_item) . " " . $title; ?>
+                        <div class="accordion-item shadow rounded border border-info" draggable="true">
+                            <h2 class="accordion-header" id="<?= $id_item ?>">
 
-                                                <span class="badge rounded-pill">
-                                                    <!-- Working on it -->
-                                                    <button type="button" class="btn btn-sm btn-outline-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_insert_level_<?= $id_item; ?>" title="Add new level into level">
-                                                        <i class="fa-solid fa-folder-plus" aria-hidden="true"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
-                                                        <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
-                                                    </button>
-                                                    <a href="process.destroy.php?id=<?= $id_item ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
-                                                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                                                    </a>
-                                                </span>
+                                <div class="btn-group col-12" role="group" aria-label="Button group with nested dropdown">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#id_<?= $id_item ?>" aria-expanded="false" aria-controls="id_<?= $id_item ?>">
+                                        <?= $title ?>
+                                    </button>
+
+                                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split rounded-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="visually-hidden">Options</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <button type="button" class="dropdown-item text-info" data-bs-toggle="modal" data-bs-target="#modal_insert_level_<?= $id_item; ?>" title="Add new level into level">
+                                                <i class="fa-solid fa-folder-plus" aria-hidden="true"></i> New level
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="dropdown-item text-warning" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
+                                                <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i> Edit level name
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <a href="process.destroy.php?id=<?= $id_item ?>" class="dropdown-item text-danger" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
+                                                <i class="fa-solid fa-trash" aria-hidden="true"></i> Delete level
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </h2>
+                            <?php
+                            include("includes/modal_edit_level.php");
+                            include("includes/modal_insert_level.php");
+                            ?>
+                            <div id="id_<?= $id_item ?>" class="accordion-collapse collapse" aria-labelledby="<?= $id_item ?>">
+                                <div class="accordion-body pe-0">
+                                    <?php if (isset($data->items)) {
+                                        foreach ($data->items as $item) {
+                                            $id_item = $item->id;
+                                            $title = $item->text;
+                                    ?>
+                                            <!-- Level 2 -->
+                                            <div class="accordion-item shadow rounded border border-info">
+                                                <h2 class="accordion-header" id="<?= $id_item ?>">
+                                                    <div class="btn-group col-12" role="group" aria-label="Button group with nested dropdown">
+                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#id_<?= $id_item ?>" aria-expanded="false" aria-controls="id_<?= $id_item ?>">
+                                                            <?= $title ?>
+                                                        </button>
+
+                                                        <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split rounded-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <span class="visually-hidden">Options</span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li>
+                                                                <button type="button" class="dropdown-item text-info" data-bs-toggle="modal" data-bs-target="#modal_insert_level_<?= $id_item; ?>" title="Add new level into level">
+                                                                    <i class="fa-solid fa-folder-plus" aria-hidden="true"></i> New level
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button type="button" class="dropdown-item text-warning" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
+                                                                    <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i> Edit level name
+                                                                </button>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="process.destroy.php?id=<?= $id_item ?>" class="dropdown-item text-danger" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
+                                                                    <i class="fa-solid fa-trash" aria-hidden="true"></i> Delete level
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </h2>
                                                 <?php
                                                 include("includes/modal_edit_level.php");
                                                 include("includes/modal_insert_level.php");
                                                 ?>
+                                                <div id="id_<?= $id_item ?>" class="accordion-collapse collapse" aria-labelledby="<?= $id_item ?>">
+                                                    <div class="accordion-body pe-0">
+                                                        <?php
+                                                        if (isset($item->items)) { ?>
+                                                            <ul class="list-group">
+                                                                <?php
+                                                                foreach ($item->items as $item3) {
+                                                                    $id_item = $item3->id;
+                                                                    $title = $item3->text;
+                                                                ?>
+                                                                    <!-- Level 3 -->
+                                                                    <h2 class="accordion-body" id="<?= $id_item ?>">
+                                                                        <div class="btn-group col-12" role="group" aria-label="Button group with nested dropdown">
 
-                                            </div>
+                                                                            <button class="accordion-button collapsed item_clickeable" type="button" data-bs-toggle="collapse" data-bs-target="#id_<?= $id_item ?>" aria-expanded="false" aria-controls="id_<?= $id_item ?>">
+                                                                                <?= $title ?>
+                                                                            </button>
 
-                                            <?php
-
-                                            if (isset($item->items)) { ?>
-                                                <ul class="list-group">
-                                                    <?php
-                                                    foreach ($item->items as $item3) {
-                                                        $id_item = $item3->id;
-                                                        $title = $item3->text;
-                                                        ?>
-                                                        <!-- Level 3 -->
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-
-                                                            <a href="#" style="text-decoration: none" class="item_clickeable" id="<?= $id_item?>">
-                                                                <?= str_replace("_", ".", $id_item) . " " . $title; ?>
-                                                            </a>
-
-                                                            <span class="badge rounded-pill">
-                                                                <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
-                                                                    <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
-                                                                </button>
-                                                                <a href="process.destroy.php?id=<?= $id_item ?>" class="btn btn-sm btn-outline-danger rounded-pill" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
-                                                                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                                                                </a>
-                                                            </span>
+                                                                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split rounded-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                                <span class="visually-hidden">Options</span>
+                                                                            </button>
+                                                                            <ul class="dropdown-menu">
+                                                                                <li>
+                                                                                    <button type="button" class="dropdown-item text-warning" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
+                                                                                        <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i> Edit level name
+                                                                                    </button>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="process.destroy.php?id=<?= $id_item ?>" class="dropdown-item text-danger" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
+                                                                                        <i class="fa-solid fa-trash" aria-hidden="true"></i> Delete level
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </h2>
                                                             <?php
-                                                            include("includes/modal_edit_level.php");
-                                                            ?>
-                                                        </li>
+                                                                }
+                                                            } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <?php
+                                        }
+                                    } ?>
+                                </div>
+                            </div>
+                        </div><?php
+                            } ?>
+                </div>
 
-                                                    <?php } ?>
-                                                </ul>
-                                            <?php } ?>
 
-                                        </li>
-
-                                    <?php } ?>
-                                </ul>
-                            <?php } ?>
-                        </li>
-                    <?php } ?>
-                </ul>
 
             </div>
-            <!-- Table -->
+            <!-- Details -->
             <div class="col-md-7 mx-auto">
                 <div class="container-fluid">
-                    <div class="card rounded-0 shadow">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between">
-                                <div class="card-title col-auto flex-shrink-1 flex-grow-1">
-                                    Information about process
-                                </div>
+                    <nav class="nav nav-tabs d-flex justify-content-center" id="nav-tab-details" role="tablist">
+                        <a class="nav-link btn active text-center" id="nav-pdf-tab" data-bs-toggle="tab" href="#nav-pdf" role="tab" aria-controls="nav-pdf" aria-selected="true">PDF</a>
+                        <a class="nav-link btn text-center" id="nav-attach-tab" data-bs-toggle="tab" href="#nav-attach" role="tab" aria-controls="nav-attach" aria-selected="false">ATTACHMENT FILES</a>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="row border-bottom border-3">
+                            <label for="">Process name: <b><span id="process_title"></span></b></label>
 
-                            </div>
                         </div>
-                        <div class="card-body">
-                            <div class="container-fluid">
-                                <div class="row border-bottom border-3">
-                                    <label for="">Process name: <b><span id="process_title">...</span></b></label>                                    
+                        <div class="tab-pane fade show active" id="nav-pdf" role="tabpanel" aria-labelledby="nav-pdf-tab">
+                            <h6 class="display">PDF Loading...</h6>
+                            <iframe src="" frameborder="0"></iframe>
+                        </div>
+                        <div class="tab-pane fade" id="nav-attach" role="tabpanel" aria-labelledby="nav-attach-tab">
+                            <div class="list-group">
+                                <div class="row d-flex justify-content-between">
+                                    <p for="">Attachment files</p>
+                                    <a class="btn btn-sm btn-outline-dark">
+                                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Attach files
+                                    </a>
                                 </div>
-                                <div class="row">
-                                    <div class="d-flex justify-content-end mt-2 mb-0">
-                                        <button class="btn btn-sm btn-outline-dark">
-                                            <i class="fa-solid fa-plus" aria-hidden="true"></i> Attach files
-                                        </button>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered caption-top">
-                                            <caption>Attachment files</caption>
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Name</th>
-                                                    <th>Option</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Name of attachment file</td>
-                                                    <td></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <div class="list-item">
+                                    Atachment file 1
+                                </div>
+                                <div class="list-item">
+                                    Atachment file 2
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
