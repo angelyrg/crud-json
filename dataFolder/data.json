@@ -62,15 +62,7 @@
                 "text": "Strategy",
                 "bizagi_folder": "bizagiFolder",
                 "clickeable": false,
-                "items": [
-                    {
-                        "id": "4_1_1",
-                        "text": "xD",
-                        "bizagi_folder": "bizagiFolder",
-                        "clickeable": false,
-                        "items": []
-                    }
-                ]
+                "items": []
             },
             {
                 "id": "4_2",

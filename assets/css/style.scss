@@ -1,0 +1,161 @@
+* {
+  font-family: 'Arial';
+  // color: #6B7A99;
+  font-style: normal;
+  // font-weight: 700;
+  line-height: 25px;
+}
+
+/**
+NAVBAR
+*/
+.my_navbar {
+  background-color: #FFED00;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+
+/**
+MENU OPTIONS
+*/
+#menu {
+  background: radial-gradient(50% 330.61% at 0% 100%, #00A5B1 0%, #007687 100%);
+  min-height: 93vh;
+  padding: 20px;
+  padding-left: 30px;
+  color: #007687;
+}
+
+
+.btn-group {
+  background-color: #ffffff;
+  padding: 5px;
+  padding-left: 8px;
+  border-radius: 10px;
+}
+
+.btn-group::after {
+  outline: none;
+  border: none;
+}
+
+.dropdown-toggle {
+  border: none;
+}
+
+.dropdown-toggle:hover {
+  border: none;
+  background-color: #75757500 !important;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.accordion-item {
+  border: 1px dashed rgb(11, 184, 214);
+  margin-top: 10px;
+  background-color: #ffffff00;
+}
+
+.border-info{
+  border: none !important;
+  box-shadow: 0;
+}
+
+.accordion-button {
+  padding: 0;
+  background-color: #00758700;
+  color: #007687;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.accordion-button::after {
+  background-image: initial;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: initial;
+}
+
+.accordion-body {
+  background-color: rgba(255, 255, 255, 0);
+  padding-top: 0;
+  border: none;
+  border-left: 1px dashed #FFED00;
+}
+
+
+.dropdown-menu {
+  background-image: initial;
+}
+
+.item_clickeable {
+  color: rgb(39, 167, 184);
+}
+
+.dropdown-menu{
+  border-radius: 15epx;
+}
+
+/**
+ // END MENU OPTIONS
+*/
+
+
+/**
+INFO DETAILS
+*/
+
+.nav-link {
+  width: 30%;
+  border-radius: 20px !important;
+  color: #ADB8CC !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  border: .5px dashed #00BEC9 !important;
+}
+
+.nav-link.active {
+  background: #00BEC9 !important;
+  color: white !important;
+}
+
+#pdf_viewer{
+  height: calc(100vh * 0.7);
+  border: 1px dashed #007687;
+  background-color: #F7FAFD;
+}
+
+
+table{
+  color: #6B7A99 !important;
+}
+
+table thead{
+  color: #007687 !important;
+}
+
+#table_id_wrapper, .page-link {
+  font-size: .8em;
+}
+
+.pagination>.paginate_button>.page-link{
+  border-radius: 50px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.active>.page-link, .page-link.active{
+  background-color: #007687;
+  border: none;
+  border-radius: 50%;
+}
+
+.my_btn{
+  border-radius: 20px !important;
+}
+
