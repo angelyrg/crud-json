@@ -43,7 +43,7 @@ function searchItem(full_id, data){
 
 $(".item_clickeable").on("click", function () {
     let item_id = $(this).attr("id");
+    console.log(item_id)
     searchItem(item_id, window.all_data);
-    console.log("Clicked");
 });
 

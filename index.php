@@ -135,31 +135,40 @@ include("includes/modal_new_level.php");
                                                                     $id_item = $item3->id;
                                                                     $title = $item3->text;
                                                                 ?>
+                                                                
                                                                     <!-- Level 3 -->
-                                                                    <h2 class="accordion-body" id="<?= $id_item ?>">
-                                                                        <div class="btn-group col-12" role="group" aria-label="Button group with nested dropdown">
+                                                                    <div class="accordion-item shadow rounded border border-info">
+                                                                        <h2 class="accordion-header" id="<?= $id_item ?>">
+                                                                            <div class="btn-group col-12" role="group" aria-label="Button group with nested dropdown">
+                                                                                <button id="<?= $id_item ?>" class="accordion-button collapsed item_clickeable" type="button" data-bs-toggle="collapse" data-bs-target="#id_<?= $id_item ?>" aria-expanded="false" aria-controls="id_<?= $id_item ?>">
+                                                                                    <?= $title ?>
+                                                                                </button>
 
-                                                                            <button class="accordion-button collapsed item_clickeable" type="button" data-bs-toggle="collapse" data-bs-target="#id_<?= $id_item ?>" aria-expanded="false" aria-controls="id_<?= $id_item ?>">
-                                                                                <?= $title ?>
-                                                                            </button>
+                                                                                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split rounded-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                                    <span class="visually-hidden">Options</span>
+                                                                                </button>
+                                                                                <ul class="dropdown-menu">
+                                                                                    <li>
+                                                                                        <button type="button" class="dropdown-item text-warning" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
+                                                                                            <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i> Edit level name
+                                                                                        </button>
+                                                                                    </li>
 
-                                                                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split rounded-0" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                                <span class="visually-hidden">Options</span>
-                                                                            </button>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li>
-                                                                                    <button type="button" class="dropdown-item text-warning" data-bs-toggle="modal" data-bs-target="#modal_edit_level_<?= $id_item; ?>" title="Edit level">
-                                                                                        <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i> Edit level name
-                                                                                    </button>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="process.destroy.php?id=<?= $id_item ?>" class="dropdown-item text-danger" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
-                                                                                        <i class="fa-solid fa-trash" aria-hidden="true"></i> Delete level
-                                                                                    </a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </h2>
+                                                                                    <li>
+                                                                                        <a href="process.destroy.php?id=<?= $id_item ?>" class="dropdown-item text-danger" onclick="if(confirm(`¿Deseas eliminar del registro?`) === false) event.preventDefault();">
+                                                                                            <i class="fa-solid fa-trash" aria-hidden="true"></i> Delete level
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </h2>
+                                                                        <?php
+                                                                        include("includes/modal_edit_level.php");
+                                                                        include("includes/modal_insert_level.php");
+                                                                        ?>
+
+                                                                    </div>
+
                                                             <?php
                                                                 }
                                                             } ?>

@@ -23,7 +23,7 @@
     },
     {
         "id": 2,
-        "text": "TECHNICAL DIVISION",
+        "text": "TECHNICAL DIVISION..!!",
         "bizagi_folder": "bizagi_folder_name",
         "clickeable": false,
         "items": [
@@ -32,7 +32,15 @@
                 "text": "lvel",
                 "bizagi_folder": "bizagiFolder",
                 "clickeable": false,
-                "items": []
+                "items": [
+                    {
+                        "id": "2_1_1",
+                        "text": "New level",
+                        "bizagi_folder": "bizagiFolder",
+                        "clickeable": false,
+                        "items": []
+                    }
+                ]
             }
         ]
     },
@@ -57,7 +65,7 @@
                 "items": [
                     {
                         "id": "4_1_1",
-                        "text": "XD",
+                        "text": "xD",
                         "bizagi_folder": "bizagiFolder",
                         "clickeable": false,
                         "items": []

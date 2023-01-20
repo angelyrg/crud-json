@@ -13,7 +13,6 @@ MENU OPTIONS
   padding-top: 8px;
 }
 
-
 /* Disabled bootstrap accordion button */
 .accordion-button::after {
   background-image: initial; 
@@ -33,7 +32,6 @@ MENU OPTIONS
 
 .item_clickeable{
   color: rgb(39, 167, 184);
-  font-size: 15px;
 }
 
 /**
