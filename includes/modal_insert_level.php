@@ -1,4 +1,4 @@
-<!-- Modal New level 2-->
+<!-- Modal Insert new level-->
 <div class="modal fade" id="modal_insert_level_<?=$id_item; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

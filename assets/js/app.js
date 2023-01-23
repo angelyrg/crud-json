@@ -18,6 +18,7 @@ $(document).ready(function () {
     });
 });
 
+// Search item to display info
 function searchItem(full_id, data){
     let ids = full_id.split('_');
     data.forEach(values => {
@@ -31,6 +32,7 @@ function searchItem(full_id, data){
                     arr2.forEach(values3 => {                        
                         if ( values3.id == (ids[0]+"_"+ids[1]+"_"+ids[2]) ){
                             $("#process_title").text( values3.text );
+                            
                         }                
                     });
                 }                
@@ -39,11 +41,39 @@ function searchItem(full_id, data){
     });
 }
 
+//Update excel link
+function updateExcel(new_link){
+  // Validate if the link is correct
+  if (new_link.startsWith("https://docs.google.com/spreadsheets/") && new_link.endsWith("/pubhtml")) {
+    $("#excel_viewer").attr("src", new_link);
+    $("#modal_success_message").html("Excel link updated successfully");
+    $("#modal_success").modal("show");
+  } else {
+    $("#modal_error_message").html("The link is wrong. Please make sure the link is correct");
+    $("#modal_error").modal("show");
+  }
+}
 
-
+// Update main content with selected process info
 $(".item_clickeable").on("click", function () {
+    $("#processes_excel").addClass("d-none");
+    $("#process_info").removeClass("d-none");
+
     let item_id = $(this).attr("id");
     console.log(item_id)
     searchItem(item_id, window.all_data);
 });
 
+// Show Excel with processes list
+$("#btn_processes_list").on('click', () => {
+    $("#process_info").addClass("d-none");
+    $("#processes_excel").removeClass("d-none");
+});
+
+$("#excel_form").on("submit", function(e){
+    e.preventDefault();
+    link = $("#excel_link").val();
+    updateExcel(link);
+    $("#excel_form")[0].reset();
+    $('#modal_new_excel_link').modal('hide');
+});

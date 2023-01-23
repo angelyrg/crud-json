@@ -29,13 +29,20 @@
         "items": [
             {
                 "id": "2_1",
-                "text": "lvel",
+                "text": "Network Operations",
                 "bizagi_folder": "bizagiFolder",
                 "clickeable": false,
                 "items": [
                     {
                         "id": "2_1_1",
-                        "text": "New level",
+                        "text": "Operational Request Process",
+                        "bizagi_folder": "bizagiFolder",
+                        "clickeable": false,
+                        "items": []
+                    },
+                    {
+                        "id": "2_1_2",
+                        "text": "Problem Management",
                         "bizagi_folder": "bizagiFolder",
                         "clickeable": false,
                         "items": []

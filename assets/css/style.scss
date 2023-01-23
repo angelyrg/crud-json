@@ -6,6 +6,9 @@
   line-height: 25px;
 }
 
+p{
+  font-family: 'Arial' !important;
+}
 /**
 NAVBAR
 */
@@ -130,6 +133,9 @@ INFO DETAILS
   background-color: #F7FAFD;
 }
 
+#excel_viewer{
+  height: calc(100vh * 0.85);
+}
 
 table{
   color: #6B7A99 !important;

@@ -38,7 +38,11 @@ include("includes/modal_new_level.php");
     <div class="">
         <div class="row">
             <!-- Menu Items List -->
-            <div class="col-md-4" id="menu">
+            <div class="col-md-4 col-lg-3" id="menu">
+
+                <div class="d-grid my-2 pb-3 btn_process_list">
+                    <a href="#" class="btn btn-outline-info text-white rounded-pill" id="btn_processes_list">Process List</a>
+                </div>
 
                 <div class="row text-end">
                     <spam>
@@ -198,8 +202,9 @@ include("includes/modal_new_level.php");
 
             </div>
             <!-- Details -->
-            <div class="col-md-8 mx-auto mt-3">
-                <div class="container-fluid ">
+            <div class="col-md-8 col-lg-9 mx-auto mt-3">
+                <!-- main process info -->
+                <div class="container-fluid" id="process_info">
                     <div class="d-flex justify-content-between align-items-center my-2 ">
                         <div class="text-info fw-bold" id="process_title">Title</div>
                         <div>
@@ -224,7 +229,10 @@ include("includes/modal_new_level.php");
                         <div class="tab-pane fade " id="nav-attach" role="tabpanel" aria-labelledby="nav-attach-tab">
                             <div class="d-flex justify-content-between align-items-center my-2 ">
                                 <div class="text-info">Atachment files</div>
-                                <div class="btn btn-outline-info btn-sm my_btn">Add file</div>
+                                <button type="button" class="btn btn-outline-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_new_attach">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Add file
+                                </button>
+                                <?php include("includes/modal_attach_file.php"); ?>
                             </div>
                             <div class="table-responsive">
                                 <table class="table" id="table_id">
@@ -250,20 +258,40 @@ include("includes/modal_new_level.php");
                         </div>
                     </div>
                 </div>
-
+                <!-- Excel process -->
+                <div class="container-fluid d-none border border-info" id="processes_excel">
+                    <button type="button" class="btn btn-outline-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_new_excel_link">
+                        <i class="fa-solid fa-file-excel" aria-hidden="true"></i> Update excel
+                    </button>
+                    <?php include("includes/modal_new_excel_link.php"); ?>
+                    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRFLwVq3MiktU1Pp1xmGaEEs3ksl9tvlsIBipXkryikkmm5-ZE0bLHwT1mNroC_pg/pubhtml" class="col-12" id="excel_viewer"></iframe>
+                </div>
             </div>
         </div>
     </div>
 
+    <?php include("includes/modal_success.php"); ?>
+    <?php include("includes/modal_error.php"); ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/datatables/datatables.min.js"></script>
     <script src="assets/js/app.js"></script>
     <script>
+        // Start datatables
         $(document).ready(function() {
             $('#table_id').DataTable();
         });
+
+        // Autofocus in new excel modal
+        $('#modal_new_excel_link').on('shown.bs.modal', function() {
+            $(this).find('[autofocus]').focus();
+        });
+
+        // Disable resubmit of form when refresh page
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
     </script>
 
 </body>

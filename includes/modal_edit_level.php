@@ -1,4 +1,4 @@
-<!-- Modal New level-->
+<!-- Modal edit level-->
 <div class="modal fade" id="modal_edit_level_<?=$id_item; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -10,7 +10,7 @@
         <div class="modal-body">
           <input type="hidden" name="id" value="<?=$id_item ?>">
           <div class="mb-3">
-            <label for="edit_level_name" class="form-label">Lavel name</label>
+            <label for="edit_level_name" class="form-label">Level name</label>
             <input type="text" class="form-control rounded" value="<?= $title ?>" id="edit_level_name" name="edit_level_name" required autocomplete="off">
           </div>
         </div>
