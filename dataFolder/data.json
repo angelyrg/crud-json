@@ -38,14 +38,16 @@
                         "text": "Operational Request Process",
                         "bizagi_folder": "bizagiFolder",
                         "clickeable": false,
-                        "items": []
+                        "items": [],
+                        "pdf_file": ""
                     },
                     {
                         "id": "2_1_2",
                         "text": "Problem Management",
                         "bizagi_folder": "bizagiFolder",
                         "clickeable": false,
-                        "items": []
+                        "items": [],
+                        "pdf_file": ""
                     }
                 ]
             }
@@ -79,9 +81,10 @@
                 "items": [
                     {
                         "id": "4_2_1",
-                        "text": "HR Process recieve employe",
+                        "text": "Esto es un proceso",
                         "bizagi_folder": "bizagiFolder",
                         "clickeable": false,
+                        "pdf_file": "",
                         "items": []
                     }
                 ]

@@ -59,7 +59,7 @@ class Master
     /**
      * Update JSON record
      */
-    function update_json_data($id, $title)
+    function update_json_data($id, $title, $file_text, $attach_array)
     {
         $data = file_get_contents($this->data_file);
         $json_arr = json_decode($data, true);
@@ -99,8 +99,24 @@ class Master
                             if ($items['id'] == $ids[0]."_".$ids[1]){
                                 foreach($items['items'] as $k3 => $item3){
                                     if ($item3['id'] == $id){
-                                        $json_arr[$key]['items'][$k]['items'][$k3]['text'] = $title;
+                                        if (isset($title)){
+                                            $json_arr[$key]['items'][$k]['items'][$k3]['text'] = $title;
+                                        }
+                                        if (isset($file_text)){
+                                            $json_arr[$key]['items'][$k]['items'][$k3]['pdf_file'] = $file_text;
+                                        }
+                                        if(isset($attach_array)){
+                                            //var_dump("Attached");
+                                            //WORKING ON IT (upload attachement files)
 
+                                            $attached[$id] = (object) [
+                                                "attachement_text" => $attach_array,
+                                                "attachement_file" => $attach_array
+                                            ];
+
+
+                                            $json_arr[$key]['items'][$k]['items'][$k3]['items'] = $attach_array;
+                                        }
                                         $json = json_encode(array_values($json_arr), JSON_PRETTY_PRINT);
                                         file_put_contents($this->data_file, $json);
                                     }

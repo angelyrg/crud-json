@@ -127,10 +127,14 @@ INFO DETAILS
   color: white !important;
 }
 
-#pdf_viewer{
+#pdf_content{
   height: calc(100vh * 0.7);
   border: 1px dashed #007687;
   background-color: #F7FAFD;
+}
+
+#pdf_viewer{
+  height: calc(100vh * 0.7);
 }
 
 #excel_viewer{

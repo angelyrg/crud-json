@@ -198,18 +198,26 @@ include("includes/modal_new_level.php");
                             } ?>
                 </div>
 
-
-
             </div>
             <!-- Details -->
             <div class="col-md-8 col-lg-9 mx-auto mt-3">
+
                 <!-- main process info -->
                 <div class="container-fluid" id="process_info">
                     <div class="d-flex justify-content-between align-items-center my-2 ">
                         <div class="text-info fw-bold" id="process_title">Title</div>
                         <div>
-                            <div class="btn btn-info">Upload biazgi folder</div>
+
+                            <?php include("includes/modal_upload_pdf.php"); ?>
+                            <button type="button" class="btn btn-info rounded-pill d-none" id="btn_update_pdf" data-bs-toggle="modal" data-bs-target="#modal_upload_pdf">
+                                <i class="fa-solid fa-plus text-white" aria-hidden="true"></i> Change PDF file
+                            </button>
+
+                            <div class="btn btn-info">Upload bizagi folder</div><button type="button" class="btn btn-info rounded-pill d-none" id="btn_update_pdf" data-bs-toggle="modal" data-bs-target="#modal_upload_pdf">
+                                <i class="fa-solid fa-plus text-white" aria-hidden="true"></i> Change PDF file
+                            </button>
                             <div class="btn btn-info">Go to Bizagi</div>
+
                         </div>
                     </div>
                     <nav class="nav nav-tabs d-flex justify-content-center pt-3 pb-2 border-top" id="nav-tab-details" role="tablist">
@@ -218,21 +226,26 @@ include("includes/modal_new_level.php");
                     </nav>
                     <div class="tab-content " id="nav-tabContent">
                         <div class="tab-pane fade show active " id="nav-pdf" role="tabpanel" aria-labelledby="nav-pdf-tab">
-                            <div class="container pt-0 d-flex align-items-center justify-content-center rounded-3" id="pdf_viewer">
-                                <div class="text-center">
+                            <div class="container pt-0 d-flex align-items-center justify-content-center rounded-3" id="pdf_content">
+                                <iframe src="" frameborder="0" id="pdf_viewer" width="100%" class="d-none"></iframe>
+                                <div class="text-center" id="no_pdf_viewer">
                                     <img src="assets/imgs/no-file.svg" alt="File not found" class="img-fluid">
                                     <p class="text-secondary"><small>No file to display</small></p>
-                                    <button class="btn btn-outline-info rounded-5 px-5">Upload PDF</button>
+                                    
+                                    <button type="button" class="btn btn-outline-info rounded-pill px-5" data-bs-toggle="modal" data-bs-target="#modal_upload_pdf">
+                                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Upload PDF file
+                                </button>
                                 </div>
                             </div>
                         </div>
                         <div class="tab-pane fade " id="nav-attach" role="tabpanel" aria-labelledby="nav-attach-tab">
                             <div class="d-flex justify-content-between align-items-center my-2 ">
                                 <div class="text-info">Atachment files</div>
-                                <button type="button" class="btn btn-outline-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_new_attach">
+                                <button type="button" class="btn btn-outline-info rounded-pill" data-bs-toggle="modal" data-bs-target="#modal_upload_attach">
                                     <i class="fa fa-plus" aria-hidden="true"></i> Add file
                                 </button>
-                                <?php include("includes/modal_attach_file.php"); ?>
+
+                                <?php include("includes/modal_upload_attach.php"); ?>
                             </div>
                             <div class="table-responsive">
                                 <table class="table" id="table_id">

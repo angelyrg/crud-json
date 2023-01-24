@@ -32,7 +32,19 @@ function searchItem(full_id, data){
                     arr2.forEach(values3 => {                        
                         if ( values3.id == (ids[0]+"_"+ids[1]+"_"+ids[2]) ){
                             $("#process_title").text( values3.text );
-                            
+                            $("#process_id").val( values3.id );
+                            if (values3.pdf_file != null && values3.pdf_file != ""){
+                              $("#pdf_viewer").attr('src', "testupload/"+values3.pdf_file ).removeClass("d-none");
+                              $("#no_pdf_viewer").addClass("d-none");
+                              $("#btn_update_pdf").removeClass("d-none");
+
+                            }else{
+                              $("#pdf_viewer").attr('src', "").addClass("d-none");
+                              $("#no_pdf_viewer").removeClass("d-none");
+                              $("#btn_update_pdf").addClass("d-none");
+
+                            }
+
                         }                
                     });
                 }                
